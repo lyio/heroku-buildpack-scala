@@ -81,7 +81,7 @@ SBT_URL="http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-s
 ## in 0.10 start-script will depend on package, if packaging
 ## is required - it may not be, we can run .class files or a package-war
 ## instead.
-SBT_TASKS="compile"
+SBT_TASKS="compile stage"
 
 # To enable clean compiles, configure the environment to clean:
 # $ heroku config:set SBT_CLEAN=true
@@ -125,11 +125,11 @@ if [ ! -d "$SBT_USER_HOME/.ivy2" ]; then
   fi
 fi
 
-# build app
-run_sbt "$javaVersion" "$SBT_USER_HOME_ABSOLUTE" "$SBT_BINDIR/$SBT_JAR" "$SBT_TASKS"
 # run bower
 bower install
-run_sbt "$javaVersion" "$SBT_USER_HOME_ABSOLUTE" "$SBT_BINDIR/$SBT_JAR" "stage"
+
+# build app
+run_sbt "$javaVersion" "$SBT_USER_HOME_ABSOLUTE" "$SBT_BINDIR/$SBT_JAR" "$SBT_TASKS"
 
 # repack cache
 mkdir -p $CACHE_DIR
