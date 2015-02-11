@@ -125,9 +125,6 @@ if [ ! -d "$SBT_USER_HOME/.ivy2" ]; then
   fi
 fi
 
-# run bowercopy and grunt-cdnify
-grunt release
-
 # build app
 run_sbt "$javaVersion" "$SBT_USER_HOME_ABSOLUTE" "$SBT_BINDIR/$SBT_JAR" "$SBT_TASKS"
 
